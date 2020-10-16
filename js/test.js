@@ -1,37 +1,33 @@
 function isLoginValid(login, min = 4, max = 16) {
-  if (login.length >= min && login.length <= max) {
-    return true;
-  } else {
-    return false;
+  if (max < min || !login) {
+    throw new Error("Задумайся!");
   }
+
+  return login.length >= min && login.length <= max;
 }
 
 function isLoginUnique(allLogins, login) {
-  "use strict";
-  if (allLogins.includes(login)) {
-    return false;
-  } else {
-    return true;
-  }
+  return !allLogins.includes(login);
 }
 
+// const isLoginUnique = (allLogins, login) => !allLogins.includes(login);
+
 function addLogin(allLogins, login) {
-  "use strict";
   const SUCCESS = "Логин успешно добавлен!";
   const REFUSAL = "Такой логин уже используется!";
   const ERROR = "Ошибка! Логин должен быть размером от 4 до 16 символов";
-  let message;
-  if (isLoginValid(login) && isLoginUnique(allLogins, login)) {
-    allLogins.push(login);
-    message = SUCCESS;
-    return message;
-  } else if (isLoginUnique(allLogins, login) === false) {
-    message = REFUSAL;
-    return message;
-  } else {
-    message = ERROR;
-    return message;
+
+  if (!isLoginUnique(allLogins, login)) {
+    return REFUSAL;
   }
+
+  if (isLoginValid(login)) {
+    allLogins.push(login);
+
+    return SUCCESS;
+  }
+
+  return ERROR;
 }
 
 const logins = ["Mango", "robotGoogles", "Poly", "Aj4x1sBozz", "qwerty123"];
