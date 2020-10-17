@@ -1,19 +1,26 @@
-function formatString(string, maxLength = 40) {
-  let trueString = string.length;
-  if (trueString > maxLength) {
-    return string.slice(0, maxLength) + `...`;
-  } else {
-    return string;
+const countTotalSalary = function (employees) {
+  "use strict";
+  const values = Object.values(employees);
+  let total = 0;
+  for (const value of values) {
+    total += value;
   }
-}
+  return total;
+};
 
-console.log(formatString("Curabitur ligula sapien, tincidunt non."));
-// 'Curabitur ligula sapien, tincidunt non.'
+// Объекты и ожидаемый результат
+const developers = {
+  mango: 300,
+  poly: 250,
+  alfred: 450,
+};
+console.log(countTotalSalary(developers));
+// 1000
 
-console.log(formatString("Vestibulum facilisis, purus nec pulvinar iaculis."));
-// 'Vestibulum facilisis, purus nec pulvinar...'
-
-console.log(
-  formatString("Vestibulum facilisis, purus nec pulvinar iaculis.", 30)
-);
-// 'Vestibulum facilisis, purus ne...'
+const supports = {
+  kiwi: 200,
+  lux: 150,
+  chelsy: 150,
+};
+console.log(countTotalSalary(supports));
+// 500
